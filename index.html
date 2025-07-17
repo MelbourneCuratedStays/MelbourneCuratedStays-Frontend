@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melbourne Curated Stays - Premium Short-Term Rental Management</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a luxurious serif heading and clean sans-serif body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif; /* Default sans-serif for body text */
+            background-color: #F5F5F5; /* Warm White/Light Grey background */
+            color: #4A4A4A; /* Darker grey for general body text for readability */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif; /* Elegant serif for headings */
+        }
+        .container {
+            max-width: 1200px;
+        }
+        /* Custom styles for luxury and aesthetic with Teal/Emerald palette */
+        .btn-primary {
+            background-color: #008080; /* Muted Teal/Emerald */
+            color: white;
+            padding: 16px 40px; /* Increased padding for a more substantial feel */
+            border-radius: 9999px; /* Fully rounded */
+            font-weight: 600;
+            letter-spacing: 0.05em; /* Increased letter spacing for elegance */
+            text-transform: uppercase; /* Uppercase text for buttons */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Softer, subtle shadow */
+        }
+        .btn-primary:hover {
+            background-color: #005757; /* Darker Muted Teal/Emerald on hover */
+            transform: translateY(-3px); /* More pronounced lift on hover */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .section-heading {
+            font-size: 2.25rem; /* Default smaller for mobile */
+            font-weight: 700;
+            color: #008080; /* Muted Teal/Emerald for headings */
+            margin-bottom: 1.5rem; /* Adjusted margin */
+            letter-spacing: -0.03em;
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .section-heading {
+                font-size: 3.5rem; /* Larger for desktop */
+                margin-bottom: 2.5rem;
+            }
+        }
+        .section-subheading {
+            font-size: 1.75rem; /* Default smaller for mobile */
+            font-weight: 600;
+            color: #008080; /* Muted Teal/Emerald for sub-headings */
+            margin-bottom: 1rem; /* Adjusted margin */
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .section-subheading {
+                font-size: 2.5rem; /* Larger for desktop */
+                margin-bottom: 2rem;
+            }
+        }
+        .card {
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 5px 10px -5px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem; /* Further adjusted padding for mobile */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(240, 240, 240, 0.8);
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .card {
+                padding: 3rem;
+            }
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.12), 0 10px 15px -8px rgba(0, 0, 0, 0.08);
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('background_image.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 4rem; /* Further adjusted padding for mobile */
+            padding-bottom: 4rem; /* Further adjusted padding for mobile */
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .hero-section {
+                padding-top: 10rem;
+                padding-bottom: 10rem;
+            }
+        }
+        @media (min-width: 1024px) { /* Large screens and up */
+            .hero-section {
+                padding-top: 14rem;
+                padding-bottom: 14rem;
+            }
+        }
+        .hero-section h1 {
+            font-size: 2.75rem; /* Smaller for mobile */
+            line-height: 1.1;
+            margin-bottom: 0.75rem; /* Adjusted margin */
+            font-weight: 700;
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .hero-section h1 {
+                font-size: 4.5rem;
+            }
+        }
+        @media (min-width: 1024px) { /* Large screens and up */
+            .hero-section h1 {
+                font-size: 5rem;
+            }
+        }
+        .hero-section p {
+            font-size: 1rem; /* Smaller for mobile */
+            max-width: 90%; /* Adjusted max-width for mobile */
+            font-weight: 300;
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .hero-section p {
+                font-size: 1.75rem;
+                max-width: 4.5xl;
+            }
+        }
+        @media (min-width: 1024px) { /* Large screens and up */
+            .hero-section p {
+                font-size: 2rem;
+            }
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px 16px; /* Further adjusted padding */
+            border: 1px solid #E0E0E0;
+            border-radius: 0.75rem;
+            font-size: 0.95rem; /* Further adjusted font size */
+            background-color: #FFFFFF;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .form-input {
+                padding: 16px 20px;
+                font-size: 1.15rem;
+            }
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #008080;
+            box-shadow: 0 0 0 4px rgba(0, 128, 128, 0.2);
+        }
+        .footer {
+            background-color: #008080;
+            color: white;
+            padding-top: 2rem; /* Adjusted padding */
+            padding-bottom: 2rem; /* Adjusted padding */
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .footer {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+        }
+        .text-accent {
+            color: #B8A17F;
+        }
+        .text-gray-800 {
+            color: #008080;
+        }
+        .text-gray-600 {
+            color: #555555;
+        }
+        .text-gray-700 {
+            color: #444444;
+        }
+        .faq-item {
+            border-bottom: 1px solid #EEEEEE;
+            padding-bottom: 1.25rem; /* Adjusted padding */
+            margin-bottom: 1.25rem; /* Adjusted margin */
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .faq-item {
+                padding-bottom: 1.75rem;
+                margin-bottom: 1.75rem;
+            }
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #008080;
+            font-size: 1.05rem; /* Adjusted font size */
+            margin-bottom: 0.5rem; /* Adjusted margin */
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .faq-question {
+                font-size: 1.35rem;
+            }
+        }
+        .faq-answer {
+            color: #555555;
+            line-height: 1.6; /* Adjusted line height */
+        }
+        @media (min-width: 768px) { /* Medium screens and up */
+            .faq-answer {
+                line-height: 1.8;
+            }
+        }
+        /* Ensure sections are correctly positioned below fixed header */
+        /* Increased scroll-margin-top values for more buffer space */
+        #home, #about, #services, #excellence, #how-it-works, #faq, #partnership, #contact {
+            scroll-margin-top: 20px; /* Increased for mobile header */
+        }
+        @media (min-width: 768px) {
+            #home, #about, #services, #excellence, #how-it-works, #faq, #partnership, #contact {
+                scroll-margin-top: 120px; /* Increased for desktop header */
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md py-3 md:py-6 fixed top-0 left-0 w-full z-50"> <!-- Added fixed positioning and z-index -->
+        <nav class="container mx-auto flex justify-between items-center px-4 md:px-8">
+            <div class="text-2xl font-bold text-gray-800">
+                <!-- MCS Logo (Image) -->
+                <img src="logo.png" alt="Melbourne Curated Stays Logo" class="h-16 md:h-28 w-auto object-contain max-h-full">
+            </div>
+            <ul class="hidden md:flex space-x-6 lg:space-x-10">
+                <li><a href="#home" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Home</a></li>
+                <li><a href="#about" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">About</a></li>
+                <li><a href="#services" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Services</a></li>
+                <li><a href="#excellence" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Excellence</a></li>
+                <li><a href="#how-it-works" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">How It Works</a></li>
+                <li><a href="#faq" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">FAQ</a></li>
+                <li><a href="#partnership" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Partnership</a></li>
+                <li><a href="#contact" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Contact</a></li>
+            </ul>
+            <div class="md:hidden">
+                <!-- Mobile Menu Button (Hamburger Icon) -->
+                <button class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-center py-12 md:py-24 lg:py-32">
+        <div class="container mx-auto px-4 md:px-8">
+            <h1 class="font-extrabold leading-tight mb-4 text-3xl md:text-5xl lg:text-6xl">
+                Unlock Your Property's Full Potential in Melbourne
+            </h1>
+            <p class="mb-8 mx-auto font-light text-base md:text-xl lg:text-2xl max-w-xl md:max-w-3xl lg:max-w-4xl">
+                Premium Short-Term Rental Management for Hassle-Free Returns.
+            </p>
+            <a href="#partnership" class="btn-primary inline-block text-sm md:text-base px-6 py-3 md:px-10 md:py-5">Partner With Us Today</a>
+        </div>
+    </section>
+
+    <!-- About Melbourne Curated Stays Section -->
+    <section id="about" class="py-16 md:py-24 lg:py-32">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="section-heading">About Melbourne Curated Stays</h2>
+            <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
+                Melbourne Curated Stays is a premier short-term rental management company dedicated to maximizing property owner returns while providing exceptional guest experiences in the vibrant city of Melbourne.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+                <div class="relative rounded-2xl overflow-hidden shadow-xl">
+                    <img src="https://placehold.co/600x400/555555/ffffff?text=About+Us+Image" alt="About Us" class="w-full h-auto object-cover">
+                    <div class="absolute inset-0 bg-black opacity-25"></div>
+                </div>
+                <div class="text-left space-y-6 md:space-y-10">
+                    <div>
+                        <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 text-gray-800">Our Vision</h3>
+                        <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                            To be the most trusted and sought-after short-term rental management partner in Melbourne, renowned for our seamless service, transparent operations, and consistent delivery of superior results for our clients.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 text-gray-800">Our Mission</h3>
+                        <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                            To empower property owners to effortlessly achieve their financial goals through optimized short-term rental performance, while ensuring every guest enjoys a meticulously curated and memorable stay in Melbourne.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 lg:py-32 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="section-heading">Our Comprehensive Management Services</h2>
+            <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
+                We handle every aspect of your short-term rental property, ensuring maximum occupancy and guest satisfaction.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                <!-- Service Card 1 -->
+                <div class="card">
+                    <div class="text-accent text-5xl md:text-7xl mb-6 md:mb-8">
+                        <!-- Icon Placeholder (e.g., House icon) -->
+                        <svg class="w-12 h-12 md:w-16 md:h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </div>
+                    <h3 class="text-lg md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Optimized Listings & Marketing</h3>
+                    <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                        Professional photography, compelling descriptions, and dynamic pricing strategies to maximize your visibility and bookings across platforms.
+                    </p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="card">
+                    <div class="text-accent text-5xl md:text-7xl mb-6 md:mb-8">
+                        <!-- Icon Placeholder (e.g., User icon) -->
+                        <svg class="w-12 h-12 md:w-16 md:h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H2v-2a3 3 0 015.356-1.857M9 20v-2m3 2v-2m-3 2a1 1 0 110-2 1 1 0 010 2zm3 0a1 1 0 110-2 1 1 0 010 2zm-3-8a1 1 0 100-2 1 1 0 000 2zm0 0H9m5.5-2a1 1 0 100-2 1 1 0 000 2zm0 0H15"></path></svg>
+                    </div>
+                    <h3 class="text-lg md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Seamless Guest Experience</h3>
+                    <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                        24/7 guest communication, smooth check-ins, and personalized local recommendations ensure 5-star reviews.
+                    </p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="card">
+                    <div class="text-accent text-5xl md:text-7xl mb-6 md:mb-8">
+                        <!-- Icon Placeholder (e.g., Cleaning icon) -->
+                        <svg class="w-12 h-12 md:w-16 md:h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    </div>
+                    <h3 class="text-lg md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Maintenance & Housekeeping</h3>
+                    <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                        Regular professional cleaning, timely maintenance, and inventory management to keep your property in pristine condition.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Commitment to Excellence Section -->
+    <section id="excellence" class="py-16 md:py-24 lg:py-32 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="section-heading">Our Commitment to Excellence</h2>
+            <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
+                At Melbourne Curated Stays, we don't just manage properties; we cultivate exceptional guest experiences and maximize your returns through unwavering dedication and meticulous attention to detail.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+                <div class="relative rounded-2xl overflow-hidden shadow-xl">
+                    <img src="https://placehold.co/600x400/333333/ffffff?text=Professional+Excellence+Image" alt="Professional Excellence" class="w-full h-auto object-cover">
+                    <div class="absolute inset-0 bg-black opacity-35"></div>
+                </div>
+                <div class="text-left space-y-6 md:space-y-10">
+                    <div>
+                        <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 text-gray-800">Unwavering Dedication</h3>
+                        <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                            We are committed to providing unparalleled service, treating each property as our own. Our dedicated team ensures every aspect of your short-term rental is managed with precision and care.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 text-gray-800">Seamless Operations</h3>
+                        <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                            From dynamic pricing to 24/7 guest support and meticulous cleaning, our streamlined operations guarantee a hassle-free experience for both you and your guests, leading to consistent 5-star reviews.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 text-gray-800">Optimized Performance</h3>
+                        <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                            Leveraging advanced analytics and market insights, we continuously optimize your listing's performance, ensuring competitive pricing and maximum occupancy for superior financial returns.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-16 md:py-24 lg:py-32">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="section-heading">How It Works</h2>
+            <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
+                Partnering with Melbourne Curated Stays is a straightforward process designed for your convenience.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+                <!-- Step 1 -->
+                <div class="card p-6 md:p-8 text-left">
+                    <div class="text-accent text-4xl md:text-5xl font-bold mb-4 md:mb-5">01</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Initial Consultation</h3>
+                    <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                        We begin with a detailed discussion about your property, your goals, and how our services can best meet your needs.
+                    </p>
+                </div>
+                <!-- Step 2 -->
+                <div class="card p-6 md:p-8 text-left">
+                    <div class="text-accent text-4xl md:text-5xl font-bold mb-4 md:mb-5">02</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Property Onboarding</h3>
+                    <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                        Our team handles professional photography, compelling listing creation, and setup across top rental platforms.
+                    </p>
+                </div>
+                <!-- Step 3 -->
+                <div class="card p-6 md:p-8 text-left">
+                    <div class="text-accent text-4xl md:text-5xl font-bold mb-4 md:mb-5">03</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Active Management</h3>
+                    <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                        We take over daily operations, including guest communication, cleaning, maintenance, and dynamic pricing adjustments.
+                    </p>
+                </div>
+                <!-- Step 4 -->
+                <div class="card p-6 md:p-8 text-left">
+                    <div class="text-accent text-4xl md:text-5xl font-bold mb-4 md:mb-5">04</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Transparent Reporting</h3>
+                    <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
+                        Receive monthly performance reports and payouts, giving you complete peace of mind and clear insights into your investment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frequently Asked Questions Section -->
+    <section id="faq" class="py-16 md:py-24 lg:py-32 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="section-heading">Frequently Asked Questions</h2>
+            <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
+                Find answers to common questions about our short-term rental management services.
+            </p>
+            <div class="max-w-2xl mx-auto text-left space-y-6 md:space-y-8">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <h3 class="faq-question">What types of properties do you manage?</h3>
+                    <p class="faq-answer text-sm md:text-base">
+                        We specialize in managing a wide range of residential properties in Melbourne suitable for short-term rentals, including apartments, houses, and townhouses. We focus on properties that meet our high standards for guest experience.
+                    </p>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <h3 class="faq-question">How are your management fees structured?</h3>
+                    <p class="faq-answer text-sm md:text-base">
+                        Our fees are a percentage of the gross booking revenue, ensuring our success is directly tied to yours. We offer competitive rates and transparent billing with no hidden charges. Contact us for a personalized quote.
+                    </p>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <h3 class="faq-question">How do you ensure property security and guest vetting?</h3>
+                    <p class="faq-answer text-sm md:text-base">
+                        We implement strict guest vetting processes, including identity verification and review history checks. For security, we recommend smart locks and can advise on additional security measures. Your property's safety is a top priority.
+                    </p>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <h3 class="faq-question">How often will I receive payouts and reports?</h3>
+                    <p class="faq-answer text-sm md:text-base">
+                        Property owners receive detailed financial reports and payouts on a monthly basis. Our reports provide a clear overview of bookings, revenue, and expenses for complete transparency.
+                    </p>
+                </div>
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <h3 class="faq-question">What if my property requires maintenance or repairs?</h3>
+                    <p class="faq-answer text-sm md:text-base">
+                        We proactively manage all maintenance and repairs. We have a trusted network of local contractors and will handle minor issues promptly. For larger repairs, we will always consult with you before proceeding.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Application Section -->
+    <section id="partnership" class="py-16 md:py-24 lg:py-32">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="section-heading">Partner With Melbourne Curated Stays</h2>
+            <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
+                Ready to maximize your short-term rental income with minimal effort? Fill out the form below, and our team will be in touch shortly.
+            </p>
+            <div class="max-w-xl md:max-w-3xl mx-auto card p-8 md:p-12">
+                <form id="partnershipForm" class="space-y-6 md:space-y-10">
+                    <div>
+                        <label for="name" class="block text-left text-gray-700 text-sm md:text-lg font-medium mb-2 md:mb-3">Full Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-left text-gray-700 text-sm md:text-lg font-medium mb-2 md:mb-3">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="john.doe@example.com" required>
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-left text-gray-700 text-sm md:text-lg font-medium mb-2 md:mb-3">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="+61 4XX XXX XXX" required>
+                    </div>
+                    <div>
+                        <label for="propertyType" class="block text-left text-gray-700 text-sm md:text-lg font-medium mb-2 md:mb-3">Type of Property</label>
+                        <select id="propertyType" name="propertyType" class="form-input" required>
+                            <option value="">Select Property Type</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="house">House</option>
+                            <option value="townhouse">Townhouse</option>
+                            <option value="villa">Villa</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-left text-gray-700 text-sm md:text-lg font-medium mb-2 md:mb-3">Message (Optional)</label>
+                        <textarea id="message" name="message" rows="4" md:rows="6" class="form-input" placeholder="Tell us more about your property or specific needs..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full text-base md:text-lg px-6 py-3 md:px-10 md:py-5">Submit Application</button>
+                    <div id="formMessage" class="mt-6 text-center text-sm md:text-base font-medium" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Simple Footer Contact) -->
+    <section id="contact" class="py-16 md:py-24 lg:py-32 bg-gray-100">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="section-heading">Get In Touch</h2>
+            <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-16 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
+                Have questions or need more information? We're here to help.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-12">
+                <div class="text-center">
+                    <p class="font-semibold text-gray-800 text-xl md:text-2xl mb-2 md:mb-3">Email Us:</p>
+                    <a href="mailto:contact@melbournecuratedstays.com.au" class="text-accent hover:underline text-base md:text-xl transition duration-200">contact@melbournecuratedstays.com.au</a>
+                </div>
+                <div class="text-center">
+                    <p class="font-semibold text-gray-800 text-xl md:text-2xl mb-2 md:mb-3">Visit Our Office:</p>
+                    <p class="text-gray-600 text-base md:text-xl">Melbourne, Victoria, Australia (by appointment)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-8 md:py-12 text-center">
+        <div class="container mx-auto px-4 md:px-8">
+            <p class="text-sm md:text-lg">&copy; 2025 Melbourne Curated Stays. All rights reserved.</p>
+            <p class="text-xs md:text-base mt-3 md:mt-5">
+                <a href="#" class="text-gray-300 hover:text-white mx-2 md:mx-4 transition duration-200">Privacy Policy</a> |
+                <a href="#" class="text-gray-300 hover:text-white mx-2 md:mx-4 transition duration-200">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // JavaScript for handling the partnership form submission
+        document.getElementById('partnershipForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const formMessage = document.getElementById('formMessage');
+            formMessage.style.display = 'block';
+            formMessage.classList.remove('text-red-500', 'text-green-500'); // Clear previous styles
+
+            const formData = new FormData(this);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+
+            // This is the actual fetch call to your backend server
+            fetch('https://melbourne-curated-stays-emails-514327953701.australia-southeast2.run.app/submit-application', { // <--- CHANGE THIS URL LATER FOR LIVE DEPLOYMENT
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    formMessage.textContent = 'Application submitted successfully! We will contact you shortly.';
+                    formMessage.classList.add('text-green-500');
+                    this.reset(); // Clear the form
+                } else {
+                    formMessage.textContent = result.message || 'There was an error submitting your application. Please try again.';
+                    formMessage.classList.add('text-red-500');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                formMessage.textContent = 'An unexpected error occurred. Please try again later.';
+                formMessage.classList.add('text-red-500');
+            });
+
+            // Hide the message after a few seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 7000); // Message disappears after 7 seconds
+        });
+    </script>
+</body>
+</html>

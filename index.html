@@ -11,7 +11,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif; /* Default sans-serif for body text */
-            background-color: #F5F5F5; /* Warm White/Light Grey background */
+            background-color: #FFFFFF; /* Set body background explicitly to white for alternation */
             color: #4A4A4A; /* Darker grey for general body text for readability */
         }
         h1, h2, h3, h4, h5, h6 {
@@ -196,6 +196,10 @@
             color: #008080;
             font-size: 1.05rem; /* Adjusted font size */
             margin-bottom: 0.5rem; /* Adjusted margin */
+            cursor: pointer; /* Indicate it's clickable */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         @media (min-width: 768px) { /* Medium screens and up */
             .faq-question {
@@ -205,20 +209,76 @@
         .faq-answer {
             color: #555555;
             line-height: 1.6; /* Adjusted line height */
+            display: none; /* Hidden by default */
+            padding-top: 0.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out; /* Smooth transition */
         }
-        @media (min-width: 768px) { /* Medium screens and up */
-            .faq-answer {
-                line-height: 1.8;
-            }
+        .faq-answer.active {
+            display: block; /* Show when active */
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-icon.rotate {
+            transform: rotate(45deg); /* Rotate for 'open' state */
+        }
+        /* Mobile menu specific styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white overlay */
+            z-index: 40; /* Below header, above content */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(100%); /* Start off-screen */
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.active {
+            transform: translateX(0); /* Slide in */
+        }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        .mobile-menu ul li {
+            margin: 1.5rem 0;
+        }
+        .mobile-menu ul li a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #008080; /* Teal/Emerald for mobile menu links */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s ease;
+        }
+        .mobile-menu ul li a:hover {
+            color: #005757;
+        }
+        .close-menu-button {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #008080;
+            cursor: pointer;
+            z-index: 50; /* Ensure it's clickable */
         }
         /* Ensure sections are correctly positioned below fixed header */
-        /* Increased scroll-margin-top values for more buffer space */
         #home, #about, #services, #excellence, #how-it-works, #faq, #partnership, #contact {
-            scroll-margin-top: 20px; /* Increased for mobile header */
+            scroll-margin-top: 60px; /* More generous space for mobile header */
         }
         @media (min-width: 768px) {
             #home, #about, #services, #excellence, #how-it-works, #faq, #partnership, #contact {
-                scroll-margin-top: 120px; /* Increased for desktop header */
+                scroll-margin-top: 120px; /* More generous space for desktop header */
             }
         }
     </style>
@@ -226,13 +286,13 @@
 <body class="antialiased">
 
     <!-- Header -->
-    <header class="bg-white shadow-md py-3 md:py-6 fixed top-0 left-0 w-full z-50"> <!-- Added fixed positioning and z-index -->
+    <header class="bg-white shadow-md py-3 md:py-6 fixed top-0 left-0 w-full z-50">
         <nav class="container mx-auto flex justify-between items-center px-4 md:px-8">
             <div class="text-2xl font-bold text-gray-800">
                 <!-- MCS Logo (Image) -->
                 <img src="logo.png" alt="Melbourne Curated Stays Logo" class="h-16 md:h-28 w-auto object-contain max-h-full">
             </div>
-            <ul class="hidden md:flex space-x-6 lg:space-x-10">
+            <ul id="main-nav" class="hidden md:flex space-x-6 lg:space-x-10">
                 <li><a href="#home" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Home</a></li>
                 <li><a href="#about" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">About</a></li>
                 <li><a href="#services" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Services</a></li>
@@ -244,12 +304,27 @@
             </ul>
             <div class="md:hidden">
                 <!-- Mobile Menu Button (Hamburger Icon) -->
-                <button class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-800 focus:outline-none">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu md:hidden">
+        <button id="close-mobile-menu" class="close-menu-button">&times;</button>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#excellence">Excellence</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#partnership">Partnership</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero-section text-center py-12 md:py-24 lg:py-32">
@@ -265,7 +340,7 @@
     </section>
 
     <!-- About Melbourne Curated Stays Section -->
-    <section id="about" class="py-16 md:py-24 lg:py-32">
+    <section id="about" class="py-16 md:py-24 lg:py-32 bg-white"> <!-- Added bg-white for alternation -->
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="section-heading">About Melbourne Curated Stays</h2>
             <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
@@ -295,7 +370,7 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 md:py-24 lg:py-32 bg-gray-50">
+    <section id="services" class="py-16 md:py-24 lg:py-32 bg-gray-50"> <!-- Set bg-gray-50 for alternation -->
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="section-heading">Our Comprehensive Management Services</h2>
             <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
@@ -340,7 +415,7 @@
     </section>
 
     <!-- Our Commitment to Excellence Section -->
-    <section id="excellence" class="py-16 md:py-24 lg:py-32 bg-gray-50">
+    <section id="excellence" class="py-16 md:py-24 lg:py-32 bg-white"> <!-- Set bg-white for alternation -->
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="section-heading">Our Commitment to Excellence</h2>
             <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
@@ -376,7 +451,7 @@
     </section>
 
     <!-- How It Works Section -->
-    <section id="how-it-works" class="py-16 md:py-24 lg:py-32">
+    <section id="how-it-works" class="py-16 md:py-24 lg:py-32 bg-gray-50"> <!-- Set bg-gray-50 for alternation -->
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="section-heading">How It Works</h2>
             <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
@@ -384,7 +459,7 @@
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
                 <!-- Step 1 -->
-                <div class="card p-6 md:p-8 text-left">
+                <div class="card">
                     <div class="text-accent text-4xl md:text-5xl font-bold mb-4 md:mb-5">01</div>
                     <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Initial Consultation</h3>
                     <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
@@ -392,7 +467,7 @@
                     </p>
                 </div>
                 <!-- Step 2 -->
-                <div class="card p-6 md:p-8 text-left">
+                <div class="card">
                     <div class="text-accent text-4xl md:text-5xl font-bold mb-4 md:mb-5">02</div>
                     <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Property Onboarding</h3>
                     <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
@@ -400,7 +475,7 @@
                     </p>
                 </div>
                 <!-- Step 3 -->
-                <div class="card p-6 md:p-8 text-left">
+                <div class="card">
                     <div class="text-accent text-4xl md:text-5xl font-bold mb-4 md:mb-5">03</div>
                     <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Active Management</h3>
                     <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
@@ -408,7 +483,7 @@
                     </p>
                 </div>
                 <!-- Step 4 -->
-                <div class="card p-6 md:p-8 text-left">
+                <div class="card">
                     <div class="text-accent text-4xl md:text-5xl font-bold mb-4 md:mb-5">04</div>
                     <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-gray-800">Transparent Reporting</h3>
                     <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
@@ -420,7 +495,7 @@
     </section>
 
     <!-- Frequently Asked Questions Section -->
-    <section id="faq" class="py-16 md:py-24 lg:py-32 bg-gray-50">
+    <section id="faq" class="py-16 md:py-24 lg:py-32 bg-white"> <!-- Set bg-white for alternation -->
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="section-heading">Frequently Asked Questions</h2>
             <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
@@ -429,35 +504,35 @@
             <div class="max-w-2xl mx-auto text-left space-y-6 md:space-y-8">
                 <!-- FAQ Item 1 -->
                 <div class="faq-item">
-                    <h3 class="faq-question">What types of properties do you manage?</h3>
+                    <h3 class="faq-question">What types of properties do you manage? <span class="faq-icon text-2xl">+</span></h3>
                     <p class="faq-answer text-sm md:text-base">
                         We specialize in managing a wide range of residential properties in Melbourne suitable for short-term rentals, including apartments, houses, and townhouses. We focus on properties that meet our high standards for guest experience.
                     </p>
                 </div>
                 <!-- FAQ Item 2 -->
                 <div class="faq-item">
-                    <h3 class="faq-question">How are your management fees structured?</h3>
+                    <h3 class="faq-question">How are your management fees structured? <span class="faq-icon text-2xl">+</span></h3>
                     <p class="faq-answer text-sm md:text-base">
                         Our fees are a percentage of the gross booking revenue, ensuring our success is directly tied to yours. We offer competitive rates and transparent billing with no hidden charges. Contact us for a personalized quote.
                     </p>
                 </div>
                 <!-- FAQ Item 3 -->
                 <div class="faq-item">
-                    <h3 class="faq-question">How do you ensure property security and guest vetting?</h3>
+                    <h3 class="faq-question">How do you ensure property security and guest vetting? <span class="faq-icon text-2xl">+</span></h3>
                     <p class="faq-answer text-sm md:text-base">
                         We implement strict guest vetting processes, including identity verification and review history checks. For security, we recommend smart locks and can advise on additional security measures. Your property's safety is a top priority.
                     </p>
                 </div>
                 <!-- FAQ Item 4 -->
                 <div class="faq-item">
-                    <h3 class="faq-question">How often will I receive payouts and reports?</h3>
+                    <h3 class="faq-question">How often will I receive payouts and reports? <span class="faq-icon text-2xl">+</span></h3>
                     <p class="faq-answer text-sm md:text-base">
                         Property owners receive detailed financial reports and payouts on a monthly basis. Our reports provide a clear overview of bookings, revenue, and expenses for complete transparency.
                     </p>
                 </div>
                 <!-- FAQ Item 5 -->
                 <div class="faq-item">
-                    <h3 class="faq-question">What if my property requires maintenance or repairs?</h3>
+                    <h3 class="faq-question">What if my property requires maintenance or repairs? <span class="faq-icon text-2xl">+</span></h3>
                     <p class="faq-answer text-sm md:text-base">
                         We proactively manage all maintenance and repairs. We have a trusted network of local contractors and will handle minor issues promptly. For larger repairs, we will always consult with you before proceeding.
                     </p>
@@ -467,7 +542,7 @@
     </section>
 
     <!-- Partnership Application Section -->
-    <section id="partnership" class="py-16 md:py-24 lg:py-32">
+    <section id="partnership" class="py-16 md:py-24 lg:py-32 bg-gray-50"> <!-- Set bg-gray-50 for alternation -->
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="section-heading">Partner With Melbourne Curated Stays</h2>
             <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
@@ -510,7 +585,7 @@
     </section>
 
     <!-- Contact Section (Simple Footer Contact) -->
-    <section id="contact" class="py-16 md:py-24 lg:py-32 bg-gray-100">
+    <section id="contact" class="py-16 md:py-24 lg:py-32 bg-white"> <!-- Set bg-white for alternation -->
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="section-heading">Get In Touch</h2>
             <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-16 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
@@ -567,7 +642,9 @@
             }
 
             // This is the actual fetch call to your backend server
-            fetch('https://melbourne-curated-stays-emails-514327953701.australia-southeast2.run.app/submit-application', { // <--- CHANGE THIS URL LATER FOR LIVE DEPLOYMENT
+            // IMPORTANT: Replace 'https://YOUR_LIVE_BACKEND_URL_HERE/submit-application' with your actual live backend URL
+            // once you deploy your Node.js server to a hosting provider.
+            fetch('https://melbourne-curated-stays-emails-514327953701.australia-southeast2.run.app/submit-application', { // Placeholder for live backend URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -595,6 +672,59 @@
             setTimeout(() => {
                 formMessage.style.display = 'none';
             }, 7000); // Message disappears after 7 seconds
+        });
+
+        // JavaScript for FAQ Collapsible functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling; // Get the next sibling element (the answer)
+                    const icon = question.querySelector('.faq-icon'); // Get the icon within the question
+
+                    // Toggle the 'active' class on the answer to show/hide it
+                    answer.classList.toggle('active');
+
+                    // Toggle the 'rotate' class on the icon for visual feedback
+                    icon.classList.toggle('rotate');
+
+                    // Optional: Close other open FAQ items
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            const otherAnswer = otherQuestion.nextElementSibling;
+                            const otherIcon = otherQuestion.querySelector('.faq-icon');
+                            if (otherAnswer.classList.contains('active')) {
+                                otherAnswer.classList.remove('active');
+                                otherIcon.classList.remove('rotate');
+                            }
+                        }
+                    });
+                });
+            });
+
+            // JavaScript for Mobile Menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+            const mobileMenuLinks = document.querySelectorAll('#mobile-menu-overlay ul li a');
+
+            // Open mobile menu
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenuOverlay.classList.add('active');
+            });
+
+            // Close mobile menu
+            closeMobileMenuButton.addEventListener('click', () => {
+                mobileMenuOverlay.classList.remove('active');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuOverlay.classList.remove('active');
+                });
+            });
         });
     </script>
 </body>

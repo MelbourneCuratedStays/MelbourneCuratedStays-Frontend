@@ -3,12 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melbourne Curated Stays - Premium Short-Term Rental Management</title>
+    <title>Melbourne Curated Stays | Premium Short-Term Rental Management & Arbitrage</title>
+    <meta name="description" content="Melbourne Curated Stays offers premium short-term rental management services in Melbourne. Maximize your property's potential with hassle-free Airbnb arbitrage, expert marketing, and 5-star guest experiences.">
+    <meta name="keywords" content="short-term rental management Melbourne, Airbnb management Melbourne, property management Melbourne, holiday rental Melbourne, Airbnb arbitrage Melbourne, Melbourne property investment, luxury short-term rental, Melbourne accommodation management">
+    <meta name="author" content="Melbourne Curated Stays">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://melbournecuratedstays.com.au/">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts for a luxurious serif heading and clean sans-serif body -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data for Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Melbourne Curated Stays",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1/148 Mitcham Rd",
+        "addressLocality": "Melbourne",
+        "addressRegion": "VIC",
+        "postalCode": "3132",
+        "addressCountry": "AU"
+      },
+      "telephone": "+614341123123",
+      "email": "contact@melbournecuratedstays.com.au",
+      "url": "https://melbournecuratedstays.com.au/",
+      "image": "https://melbournecuratedstays.com.au/logo.png",
+      "priceRange": "Competitive",
+      "description": "Premium short-term rental management and Airbnb arbitrage services in Melbourne, maximizing owner returns and guest satisfaction.",
+      "hasMap": "https://www.google.com/maps/place/Melbourne,+VIC,+Australia",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      ]
+    }
+    </script>
+
     <style>
+        /*
+        SEO Improvements Implemented in this Code:
+
+        1.  Meta Tags:
+            - <title>: Optimized with primary keywords for relevance.
+            - <meta name="description">: Compelling summary with keywords for search snippets.
+            - <meta name="keywords">: Included relevant keywords (though direct ranking impact is limited, still good for context).
+            - <meta name="author">: Specifies the website author.
+            - <meta name="robots">: Set to "index, follow" to ensure search engines crawl and index the site.
+            - <link rel="canonical">: Specifies the preferred URL for SEO, preventing duplicate content issues.
+
+        2.  Heading Structure (H1, H2, H3):
+            - Semantic use of H1 (main page title), H2 (major sections), and H3 (sub-sections) for clear content hierarchy.
+            - Keywords naturally integrated into headings where appropriate.
+
+        3.  Image Optimization:
+            - Descriptive 'alt' attributes for all significant images (logo, background images, section images) for accessibility and search engine understanding.
+            - Image file names (e.g., 'background_image.jpg', 'logo.png') are descriptive.
+
+        4.  Structured Data (Schema Markup):
+            - JSON-LD for 'LocalBusiness' is included in the <head>. This helps search engines understand your business type, contact info, address, and services, potentially leading to rich snippets in search results.
+
+        5.  Content Quality & Keyword Integration:
+            - Content is relevant to short-term rental management in Melbourne.
+            - Keywords are naturally integrated into paragraphs without keyword stuffing.
+
+        Further SEO Improvements (Beyond Code):
+        - Content Expansion: Develop a blog with articles targeting long-tail keywords (e.g., "Airbnb regulations Melbourne," "best suburbs for short-term rentals Melbourne").
+        - Off-Page SEO: Build high-quality backlinks from reputable websites, manage Google Business Profile, encourage reviews, and engage on social media.
+        - Technical SEO Audits: Regularly check site speed (Google PageSpeed Insights), mobile usability, and crawlability.
+        */
         body {
             font-family: 'Inter', sans-serif; /* Default sans-serif for body text */
             background-color: #FFFFFF; /* Set body background explicitly to white for alternation */
@@ -281,6 +357,46 @@
                 scroll-margin-top: 120px; /* More generous space for desktop header */
             }
         }
+        /* Styles for the excellence section cards */
+        .excellence-card {
+            background-color: white;
+            border-radius: 0.75rem; /* Slightly less rounded than main cards */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Softer shadow */
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .excellence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        .excellence-icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #F0F8FF; /* Very light blue/off-white background for icon */
+            margin: 0 auto 1.5rem auto;
+            border: 1px solid #E0E0E0; /* Subtle border */
+        }
+        .excellence-icon {
+            color: #B8A17F; /* Accent color for the icon itself */
+            font-size: 2.5rem; /* Size of the icon */
+        }
+        .excellence-card h3 {
+            font-family: 'Inter', sans-serif; /* Use Inter for card headings */
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #008080; /* Teal/Emerald for card headings */
+            margin-bottom: 0.75rem;
+        }
+        .excellence-card p {
+            font-size: 0.95rem;
+            color: #555555;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -289,18 +405,19 @@
     <header class="bg-white shadow-md py-3 md:py-6 fixed top-0 left-0 w-full z-50">
         <nav class="container mx-auto flex justify-between items-center px-4 md:px-8">
             <div class="text-2xl font-bold text-gray-800">
-                <!-- MCS Logo (Image) -->
+                <!-- MCS Logo (Image) - Header -->
+                <!-- Removed background styling. Logo.png needs transparent background for seamless blend. -->
                 <img src="logo.png" alt="Melbourne Curated Stays Logo" class="h-16 md:h-28 w-auto object-contain max-h-full">
             </div>
             <ul id="main-nav" class="hidden md:flex space-x-6 lg:space-x-10">
-                <li><a href="#home" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Home</a></li>
-                <li><a href="#about" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">About</a></li>
-                <li><a href="#services" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Services</a></li>
-                <li><a href="#excellence" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Excellence</a></li>
-                <li><a href="#how-it-works" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">How It Works</a></li>
-                <li><a href="#faq" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">FAQ</a></li>
-                <li><a href="#partnership" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Partnership</a></li>
-                <li><a href="#contact" class="text-gray-600 hover:text-gray-800 font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider">Contact</a></li>
+                <li><a href="#home" class="text-gray-600 hover:text-[#005757] font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider hover:underline">Home</a></li>
+                <li><a href="#about" class="text-gray-600 hover:text-[#005757] font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider hover:underline">About</a></li>
+                <li><a href="#services" class="text-gray-600 hover:text-[#005757] font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider hover:underline">Services</a></li>
+                <li><a href="#excellence" class="text-gray-600 hover:text-[#005757] font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider hover:underline">Excellence</a></li>
+                <li><a href="#how-it-works" class="text-gray-600 hover:text-[#005757] font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider hover:underline">How It Works</a></li>
+                <li><a href="#faq" class="text-gray-600 hover:text-[#005757] font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider hover:underline">FAQ</a></li>
+                <li><a href="#partnership" class="text-gray-600 hover:text-[#005757] font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider hover:underline">Partnership</a></li>
+                <li><a href="#contact" class="text-gray-600 hover:text-[#005757] font-medium transition duration-200 uppercase text-xs md:text-sm tracking-wider hover:underline">Contact</a></li>
             </ul>
             <div class="md:hidden">
                 <!-- Mobile Menu Button (Hamburger Icon) -->
@@ -343,14 +460,18 @@
     <section id="about" class="py-16 md:py-24 lg:py-32 bg-white"> <!-- Added bg-white for alternation -->
         <div class="container mx-auto px-4 md:px-8 text-center">
             <h2 class="section-heading">About Melbourne Curated Stays</h2>
-            <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
-                Melbourne Curated Stays is a premier short-term rental management company dedicated to maximizing property owner returns while providing exceptional guest experiences in the vibrant city of Melbourne.
+            <!-- Main descriptive text for About section -->
+            <p class="text-base md:text-xl text-gray-700 mb-4 md:mb-6 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
+                Melbourne Curated Stays is a premier short-term rental management company dedicated to maximizing property owner returns while providing exceptional guest experiences in the vibrant city of Melbourne. 
             </p>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-                <div class="relative rounded-2xl overflow-hidden shadow-xl">
-                    <img src="https://placehold.co/600x400/555555/ffffff?text=About+Us+Image" alt="About Us" class="w-full h-auto object-cover">
-                    <div class="absolute inset-0 bg-black opacity-25"></div>
+                <!-- Left column: Logo with circular styling -->
+                <div class="flex justify-center items-center mx-auto w-56 h-56 md:w-64 md:h-64 flex-shrink-0
+                            bg-white rounded-full border border-gray-300 shadow-xl overflow-hidden">
+                    <img src="logo.png" alt="Melbourne Curated Stays Logo" class="w-auto h-full object-contain">
                 </div>
+                <!-- Right column: Vision and Mission text -->
                 <div class="text-left space-y-6 md:space-y-10">
                     <div>
                         <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 text-gray-800">Our Vision</h3>
@@ -421,30 +542,42 @@
             <p class="text-base md:text-xl text-gray-700 mb-12 md:mb-20 max-w-xl md:max-w-3xl mx-auto leading-relaxed">
                 At Melbourne Curated Stays, we don't just manage properties; we cultivate exceptional guest experiences and maximize your returns through unwavering dedication and meticulous attention to detail.
             </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-                <div class="relative rounded-2xl overflow-hidden shadow-xl">
-                    <img src="https://placehold.co/600x400/333333/ffffff?text=Professional+Excellence+Image" alt="Professional Excellence" class="w-full h-auto object-cover">
-                    <div class="absolute inset-0 bg-black opacity-35"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10"> <!-- Changed to 4-column grid -->
+                <!-- Excellence Card 1: Unwavering Dedication -->
+                <div class="excellence-card">
+                    <div class="excellence-icon-container">
+                        <!-- Icon for Unwavering Dedication -->
+                        <svg class="excellence-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H2v-2a3 3 0 015.356-1.857M9 20v-2m3 2v-2m-3 2a1 1 0 110-2 1 1 0 010 2zm3 0a1 1 0 110-2 1 1 0 010 2zm-3-8a1 1 0 100-2 1 1 0 000 2zm0 0H9m5.5-2a1 1 0 100-2 1 1 0 000 2zm0 0H15"></path></svg>
+                    </div>
+                    <h3>Unwavering Dedication</h3>
+                    <p>We are committed to providing unparalleled service, treating each property as our own. Our dedicated team ensures every aspect of your short-term rental is managed with precision and care.</p>
                 </div>
-                <div class="text-left space-y-6 md:space-y-10">
-                    <div>
-                        <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 text-gray-800">Unwavering Dedication</h3>
-                        <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
-                            We are committed to providing unparalleled service, treating each property as our own. Our dedicated team ensures every aspect of your short-term rental is managed with precision and care.
-                        </p>
+                <!-- Excellence Card 2: Seamless Operations -->
+                <div class="excellence-card">
+                    <div class="excellence-icon-container">
+                        <!-- Icon for Seamless Operations -->
+                        <svg class="excellence-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     </div>
-                    <div>
-                        <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 text-gray-800">Seamless Operations</h3>
-                        <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
-                            From dynamic pricing to 24/7 guest support and meticulous cleaning, our streamlined operations guarantee a hassle-free experience for both you and your guests, leading to consistent 5-star reviews.
-                        </p>
+                    <h3>Seamless Operations</h3>
+                    <p>From dynamic pricing to 24/7 guest support and meticulous cleaning, our streamlined operations guarantee a hassle-free experience for both you and your guests, leading to consistent 5-star reviews.</p>
+                </div>
+                <!-- Excellence Card 3: Optimized Performance -->
+                <div class="excellence-card">
+                    <div class="excellence-icon-container">
+                        <!-- Icon for Optimized Performance -->
+                        <svg class="excellence-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 12l3-3 3 3 4-4M18 14v4h-4M2 10V6a2 2 0 012-2h4l2 2h4l2-2h4a2 2 0 012 2v4m-16 0H2a2 2 0 00-2 2v4a2 2 0 002 2h4m-4-6h6m-6 0a2 2 0 00-2 2v4a2 2 0 002 2h4m-4-6h6"></path></svg>
                     </div>
-                    <div>
-                        <h3 class="text-xl md:text-3xl font-semibold mb-3 md:mb-4 text-gray-800">Optimized Performance</h3>
-                        <p class="text-sm md:text-base text-gray-600 leading-normal md:leading-loose">
-                            Leveraging advanced analytics and market insights, we continuously optimize your listing's performance, ensuring competitive pricing and maximum occupancy for superior financial returns.
-                        </p>
+                    <h3>Optimized Performance</h3>
+                    <p>Leveraging advanced analytics and market insights, we continuously optimize your listing's performance, ensuring competitive pricing and maximum occupancy for superior financial returns.</p>
+                </div>
+                <!-- Excellence Card 4: Client-Centric Approach -->
+                <div class="excellence-card">
+                    <div class="excellence-icon-container">
+                        <!-- Icon for Client-Centric Approach (using a generic user group icon) -->
+                        <svg class="excellence-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H2v-2a3 3 0 015.356-1.857M9 20v-2m3 2v-2m-3 2a1 1 0 110-2 1 1 0 010 2zm3 0a1 1 0 110-2 1 1 0 010 2zm-3-8a1 1 0 100-2 1 1 0 000 2zm0 0H9m5.5-2a1 1 0 100-2 1 1 0 000 2zm0 0H15"></path></svg>
                     </div>
+                    <h3>Client-Centric Approach</h3>
+                    <p>Your success is our priority. We offer dedicated support and transparent communication, ensuring you're always informed and confident in your property's performance.</p>
                 </div>
             </div>
         </div>
@@ -693,10 +826,12 @@
                     faqQuestions.forEach(otherQuestion => {
                         if (otherQuestion !== question) {
                             const otherAnswer = otherQuestion.nextElementSibling;
-                            const otherIcon = otherQuestion.querySelector('.faq-icon');
-                            if (otherAnswer.classList.contains('active')) {
+                            const otherIcon = otherQuestion.classList.contains('active') ? otherQuestion.querySelector('.faq-icon') : null; // Only get icon if active
+                            if (otherAnswer && otherAnswer.classList.contains('active')) {
                                 otherAnswer.classList.remove('active');
-                                otherIcon.classList.remove('rotate');
+                                if (otherIcon) { // Check if icon exists before removing class
+                                    otherIcon.classList.remove('rotate');
+                                }
                             }
                         }
                     });
